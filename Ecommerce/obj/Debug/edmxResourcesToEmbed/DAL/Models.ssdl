@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EcommerceSimplifieModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CategoryTemplateId" Type="int" Nullable="false" />
+    <Property Name="MetaKeywords" Type="nvarchar" MaxLength="400" />
+    <Property Name="MetaDescription" Type="nvarchar(max)" />
+    <Property Name="MetaTitle" Type="nvarchar" MaxLength="400" />
+    <Property Name="ParentCategoryId" Type="int" Nullable="false" />
+    <Property Name="PictureId" Type="int" Nullable="false" />
+    <Property Name="PageSize" Type="int" Nullable="false" />
+    <Property Name="AllowCustomersToSelectPageSize" Type="bit" Nullable="false" />
+    <Property Name="PageSizeOptions" Type="nvarchar" MaxLength="200" />
+    <Property Name="PriceRanges" Type="nvarchar" MaxLength="400" />
+    <Property Name="ShowOnHomePage" Type="bit" Nullable="false" />
+    <Property Name="IncludeInTopMenu" Type="bit" Nullable="false" />
+    <Property Name="HasDiscountsApplied" Type="bit" Nullable="false" />
+    <Property Name="SubjectToAcl" Type="bit" Nullable="false" />
+    <Property Name="LimitedToStores" Type="bit" Nullable="false" />
+    <Property Name="Published" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedOnUtc" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Email" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="PasswordFormatId" Type="int" Nullable="false" />
+    <Property Name="PasswordSalt" Type="nvarchar(max)" />
+    <Property Name="AdminComment" Type="nvarchar(max)" />
+    <Property Name="IsTaxExempt" Type="bit" Nullable="false" />
+    <Property Name="AffiliateId" Type="int" Nullable="false" />
+    <Property Name="VendorId" Type="int" Nullable="false" />
+    <Property Name="HasShoppingCartItems" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="IsSystemAccount" Type="bit" Nullable="false" />
+    <Property Name="SystemName" Type="nvarchar" MaxLength="400" />
+    <Property Name="LastIpAddress" Type="nvarchar(max)" />
+    <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+    <Property Name="LastLoginDateUtc" Type="datetime" />
+    <Property Name="LastActivityDateUtc" Type="datetime" Nullable="false" />
+    <Property Name="BillingAddress_Id" Type="int" />
+    <Property Name="ShippingAddress_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Customer_CustomerRole_Mapping">
+    <Key>
+      <PropertyRef Name="Customer_Id" />
+      <PropertyRef Name="CustomerRole_Id" />
+    </Key>
+    <Property Name="Customer_Id" Type="int" Nullable="false" />
+    <Property Name="CustomerRole_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerAddresses">
+    <Key>
+      <PropertyRef Name="Customer_Id" />
+      <PropertyRef Name="Address_Id" />
+    </Key>
+    <Property Name="Customer_Id" Type="int" Nullable="false" />
+    <Property Name="Address_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="FreeShipping" Type="bit" Nullable="false" />
+    <Property Name="TaxExempt" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="IsSystemRole" Type="bit" Nullable="false" />
+    <Property Name="SystemName" Type="nvarchar" MaxLength="255" />
+    <Property Name="PurchasedWithProductId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmailAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Host" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Port" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="EnableSsl" Type="bit" Nullable="false" />
+    <Property Name="UseDefaultCredentials" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LanguageCulture" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UniqueSeoCode" Type="nvarchar" MaxLength="2" />
+    <Property Name="FlagImageFileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rtl" Type="bit" Nullable="false" />
+    <Property Name="LimitedToStores" Type="bit" Nullable="false" />
+    <Property Name="DefaultCurrencyId" Type="int" Nullable="false" />
+    <Property Name="Published" Type="bit" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="BillingAddressId" Type="int" Nullable="false" />
+    <Property Name="ShippingAddressId" Type="int" />
+    <Property Name="OrderTotal" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderItemGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="UnitPriceInclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="AttributeDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PictureBinary" Type="varbinary(max)" />
+    <Property Name="MimeType" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SeoFilename" Type="nvarchar" MaxLength="300" />
+    <Property Name="AltAttribute" Type="nvarchar(max)" />
+    <Property Name="TitleAttribute" Type="nvarchar(max)" />
+    <Property Name="IsNew" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductTypeId" Type="int" Nullable="false" />
+    <Property Name="ParentGroupedProductId" Type="int" Nullable="false" />
+    <Property Name="VisibleIndividually" Type="bit" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="ShortDescription" Type="nvarchar(max)" />
+    <Property Name="FullDescription" Type="nvarchar(max)" />
+    <Property Name="AdminComment" Type="nvarchar(max)" />
+    <Property Name="ProductTemplateId" Type="int" Nullable="false" />
+    <Property Name="ShowOnHomePage" Type="bit" Nullable="false" />
+    <Property Name="MetaKeywords" Type="nvarchar" MaxLength="400" />
+    <Property Name="MetaDescription" Type="nvarchar(max)" />
+    <Property Name="MetaTitle" Type="nvarchar" MaxLength="400" />
+    <Property Name="IsRental" Type="bit" Nullable="false" />
+    <Property Name="RentalPriceLength" Type="int" Nullable="false" />
+    <Property Name="RentalPricePeriodId" Type="int" Nullable="false" />
+    <Property Name="IsTaxExempt" Type="bit" Nullable="false" />
+    <Property Name="TaxCategoryId" Type="int" Nullable="false" />
+    <Property Name="StockQuantity" Type="int" Nullable="false" />
+    <Property Name="DisplayStockAvailability" Type="bit" Nullable="false" />
+    <Property Name="DisplayStockQuantity" Type="bit" Nullable="false" />
+    <Property Name="MinStockQuantity" Type="int" Nullable="false" />
+    <Property Name="OrderMinimumQuantity" Type="int" Nullable="false" />
+    <Property Name="OrderMaximumQuantity" Type="int" Nullable="false" />
+    <Property Name="DisableBuyButton" Type="bit" Nullable="false" />
+    <Property Name="DisableWishlistButton" Type="bit" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="OldPrice" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="SpecialPrice" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="SpecialPriceStartDateTimeUtc" Type="datetime" />
+    <Property Name="SpecialPriceEndDateTimeUtc" Type="datetime" />
+    <Property Name="Weight" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Length" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Width" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Height" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="AvailableStartDateTimeUtc" Type="datetime" />
+    <Property Name="AvailableEndDateTimeUtc" Type="datetime" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="Published" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedOnUtc" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product_Category_Mapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="IsFeaturedProduct" Type="bit" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product_Picture_Mapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="PictureId" Type="int" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateProvince">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Abbreviation" Type="nvarchar" MaxLength="100" />
+    <Property Name="Published" Type="bit" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="Customer_Addresses_Source">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CustomerAddresses" Type="Self.CustomerAddresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerAddresses">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Customer_CustomerRoles_Source">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Customer_CustomerRole_Mapping" Type="Self.Customer_CustomerRole_Mapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer_CustomerRole_Mapping">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Customer_CustomerRoles_Target">
+    <End Role="CustomerRole" Type="Self.CustomerRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Customer_CustomerRole_Mapping" Type="Self.Customer_CustomerRole_Mapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer_CustomerRole_Mapping">
+        <PropertyRef Name="CustomerRole_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Order_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderItem_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderItem_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductCategory_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product_Category_Mapping" Type="Self.Product_Category_Mapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product_Category_Mapping">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductCategory_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product_Category_Mapping" Type="Self.Product_Category_Mapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product_Category_Mapping">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductPicture_Picture">
+    <End Role="Picture" Type="Self.Picture" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product_Picture_Mapping" Type="Self.Product_Picture_Mapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Picture">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product_Picture_Mapping">
+        <PropertyRef Name="PictureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductPicture_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product_Picture_Mapping" Type="Self.Product_Picture_Mapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product_Picture_Mapping">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EcommerceSimplifieModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer_CustomerRole_Mapping" EntityType="Self.Customer_CustomerRole_Mapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerAddresses" EntityType="Self.CustomerAddresses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerRole" EntityType="Self.CustomerRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmailAccount" EntityType="Self.EmailAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderItem" EntityType="Self.OrderItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Category_Mapping" EntityType="Self.Product_Category_Mapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Picture_Mapping" EntityType="Self.Product_Picture_Mapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StateProvince" EntityType="Self.StateProvince" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="Customer_Addresses_Source" Association="Self.Customer_Addresses_Source">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerAddresses" EntitySet="CustomerAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="Customer_CustomerRoles_Source" Association="Self.Customer_CustomerRoles_Source">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Customer_CustomerRole_Mapping" EntitySet="Customer_CustomerRole_Mapping" />
+    </AssociationSet>
+    <AssociationSet Name="Customer_CustomerRoles_Target" Association="Self.Customer_CustomerRoles_Target">
+      <End Role="CustomerRole" EntitySet="CustomerRole" />
+      <End Role="Customer_CustomerRole_Mapping" EntitySet="Customer_CustomerRole_Mapping" />
+    </AssociationSet>
+    <AssociationSet Name="Order_Customer" Association="Self.Order_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="OrderItem_Order" Association="Self.OrderItem_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderItem" EntitySet="OrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="OrderItem_Product" Association="Self.OrderItem_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderItem" EntitySet="OrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="ProductCategory_Category" Association="Self.ProductCategory_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product_Category_Mapping" EntitySet="Product_Category_Mapping" />
+    </AssociationSet>
+    <AssociationSet Name="ProductCategory_Product" Association="Self.ProductCategory_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Product_Category_Mapping" EntitySet="Product_Category_Mapping" />
+    </AssociationSet>
+    <AssociationSet Name="ProductPicture_Picture" Association="Self.ProductPicture_Picture">
+      <End Role="Picture" EntitySet="Picture" />
+      <End Role="Product_Picture_Mapping" EntitySet="Product_Picture_Mapping" />
+    </AssociationSet>
+    <AssociationSet Name="ProductPicture_Product" Association="Self.ProductPicture_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Product_Picture_Mapping" EntitySet="Product_Picture_Mapping" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

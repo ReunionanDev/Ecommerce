@@ -80,3 +80,7 @@ C:\Users\CDA\source\repos\Ecommerce\Ecommerce\obj\Debug\Ecommerce.csprojAssembly
 C:\Users\CDA\source\repos\Ecommerce\Ecommerce\obj\Debug\Ecommerce.csproj.CopyComplete
 C:\Users\CDA\source\repos\Ecommerce\Ecommerce\obj\Debug\Ecommerce.dll
 C:\Users\CDA\source\repos\Ecommerce\Ecommerce\obj\Debug\Ecommerce.pdb
+C:\Users\CDA\source\repos\Ecommerce\Ecommerce\bin\EntityFramework.dll
+C:\Users\CDA\source\repos\Ecommerce\Ecommerce\bin\EntityFramework.SqlServer.dll
+C:\Users\CDA\source\repos\Ecommerce\Ecommerce\bin\EntityFramework.xml
+C:\Users\CDA\source\repos\Ecommerce\Ecommerce\bin\EntityFramework.SqlServer.xml
