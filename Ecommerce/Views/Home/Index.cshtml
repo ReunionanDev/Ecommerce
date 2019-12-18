@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Ecommerce.Models.HomeIndexViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -46,7 +47,7 @@
     <h2 style="color:black">Search Product/Categorie</h2>
 </div>
 <div class="olSearch fr">
-    <input type="text" placeholder="Enter Keyword" name="searchKey" class="inputComn houseText from form-control"/>
+    <input type="text" placeholder="Enter Keyword" name="searchKey" class="inputComn houseText from form-control" />
     <div class="searchIcon">
         <button type="button" class="searchBtn">
             <img src="~/Images/searchIcon.png" />
@@ -63,18 +64,23 @@
 </div>
 
 <div class="row product-container">
-    <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
-        <div class="thumbnail product-item" style="height:300px">
-            <img class="img-responsive" title="Click to View Product detail" style="cursor:pointer;height:160px;width:100%" src="" alt="Alternate Text" />
+    @foreach (var item in Model.ListOfProducts)
+    {
+        <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+            <div class="thumbnail product-item" style="height:300px">
+                <img class="img-responsive" title="Click to View Product detail" style="cursor:pointer;height:160px;width:100%" src="@String.Format("data:image/gif;base64,{0}",Convert.ToBase64String(item.Picture.PictureBinary))" alt="Alternate Text" />
 
-            <div class="caption">
-                <h5>Product Name</h5>
-                <p>499 Euros</p>
-                <p>Available</p>
-                <div class="product-item-badge">
-                    New
+                <div class="caption">
+                    <h5>@item.Product.Name</h5>
+                    <p>@item.Product.Price</p>
+                    <p>Available</p>
+                    <div class="product-item-badge">
+                        New
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
+
 </div>
+

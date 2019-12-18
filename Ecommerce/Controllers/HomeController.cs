@@ -12,7 +12,7 @@ namespace Ecommerce.Controllers
         public ActionResult Index()
         {
             HomeIndexViewModel model = new HomeIndexViewModel();
-            return View();
+            return View(model.CreateModel());
         }
 
         public ActionResult About()

@@ -9,6 +9,7 @@ namespace Ecommerce.Repository
     public class GenericUnitOfWork : IDisposable
     {
         private EcommerceSimplifieEntities DBEntity = new EcommerceSimplifieEntities();
+
         public IRepository<Tbl_EntityType> GetRepositoryInstance<Tbl_EntityType>() where Tbl_EntityType : class
         {
             return new GenericRepository<Tbl_EntityType>(DBEntity);
